@@ -1,3 +1,18 @@
 - table:
     schema: public
+    name: deployment_log
+  object_relationships:
+  - name: github_repo
+    using:
+      foreign_key_constraint_on: github_repo_id
+- table:
+    schema: public
     name: github_repo
+  array_relationships:
+  - name: deployment_logs
+    using:
+      foreign_key_constraint_on:
+        column: github_repo_id
+        table:
+          schema: public
+          name: deployment_log
